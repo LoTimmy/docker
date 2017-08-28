@@ -1,0 +1,3 @@
+docker build -f dockerfiles/Dockerfile.alpine -t myhtop .
+
+docker run -it --rm --pid=host myhtop
