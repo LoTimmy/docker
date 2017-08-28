@@ -1,0 +1,10 @@
+sudo docker build -t minergate-cli .
+
+docker run --rm minergate-cli -help
+docker run --rm minergate-cli -version
+docker run -d --name test minergate-cli -user YOUR-EMAIL -xmr
+docker run --rm --name test -d minergate-cli -user YOUR-EMAIL -xmr
+docker logs test
+docker stop test
+
+docker stop my_container
