@@ -1,0 +1,6 @@
+sudo docker build -t cowsay .
+
+docker run --rm cowsay
+
+docker run --rm -ti --entrypoint /bin/bash cowsay
+

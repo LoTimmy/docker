@@ -1,0 +1,18 @@
+FROM ubuntu:16.04
+
+RUN apt-get update -qq \
+    && DEBIAN_FRONTEND=noninteractive apt-get -qq -y install build-essential \
+    && DEBIAN_FRONTEND=noninteractive apt-get -qq -y install automake \
+    && DEBIAN_FRONTEND=noninteractive apt-get -qq -y install libcurl4-openssl-dev \
+    && DEBIAN_FRONTEND=noninteractive apt-get -qq -y install git \
+    && DEBIAN_FRONTEND=noninteractive apt-get -qq -y install make \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN git clone https://github.com/wolf9466/cpuminer-multi
+RUN cd cpuminer-multi && ./autogen.sh
+RUN cd cpuminer-multi && ./configure CFLAGS="-O3"
+RUN cd cpuminer-multi && make
+
+WORKDIR /cpuminer-multi
+
+ENTRYPOINT ["./minerd"]

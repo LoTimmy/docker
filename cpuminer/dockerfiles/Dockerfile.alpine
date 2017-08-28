@@ -1,0 +1,26 @@
+FROM alpine:3.5
+
+RUN apk add --no-cache libcurl \
+    libstdc++ \
+    libgcc \
+    openssl
+
+RUN apk add --no-cache --virtual .build-deps  \
+    autoconf \
+    automake \
+    build-base \
+    curl \
+    curl-dev \
+    git
+
+RUN git clone https://github.com/wolf9466/cpuminer-multi
+RUN cd cpuminer-multi && ./autogen.sh
+RUN cd cpuminer-multi && ./configure CFLAGS="-O3"
+RUN cd cpuminer-multi && make
+RUN apk del .build-deps
+
+WORKDIR /cpuminer-multi
+
+ENTRYPOINT ["./minerd"]
+CMD ["-c", "/conf/minerd.json"]
+

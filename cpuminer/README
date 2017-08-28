@@ -1,0 +1,14 @@
+docker build -f dockerfiles/Dockerfile.alpine -t minerd .
+docker build -f dockerfiles/Dockerfile.ubuntu -t minerd .
+
+docker run --rm minerd --help
+docker run --rm minerd --version
+docker run --rm minerd --config
+
+docker run --rm -d minerd -a cryptonight -o stratum+tcp://xmr.pool.minergate.com:45560 -u YOUR-EMAIL -p x
+docker run --rm -d minerd -a cryptonight -o stratum+tcp://monerohash.com:3333 -u YOUR_WALLET_ADDRESS -p x
+docker run --rm -v "$(pwd)/conf:/conf:ro" -d minerd -c /conf/minerd.json
+
+docker logs
+docker stop
+

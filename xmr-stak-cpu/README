@@ -1,0 +1,11 @@
+docker build -f dockerfiles/Dockerfile -t xmr-stak-cpu .
+docker history xmr-stak-cpu
+docker run -i -t xmr-stak-cpu /bin/bash
+
+docker run --rm -v "$(pwd)/conf:/conf:ro" -d xmr-stak-cpu
+
+docker cp vibrant_roentgen:/xmr-stak-cpu/config.txt .
+
+nproc
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/5/html/Tuning_and_Optimizing_Red_Hat_Enterprise_Linux_for_Oracle_9i_and_10g_Databases/sect-Oracle_9i_and_10g_Tuning_Guide-Large_Memory_Optimization_Big_Pages_and_Huge_Pages-Configuring_Huge_Pages_in_Red_Hat_Enterprise_Linux_4_or_5.html
+
