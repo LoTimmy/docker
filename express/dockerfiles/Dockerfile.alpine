@@ -1,0 +1,10 @@
+FROM node:alpine
+EXPOSE 8888
+
+ADD . /mydir
+WORKDIR /mydir
+
+RUN npm install
+EXPOSE 8080
+CMD npm start
+

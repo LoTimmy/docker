@@ -1,0 +1,5 @@
+docker build -f dockerfiles/Dockerfile.alpine -t express .
+
+docker run -P -d --rm express 
+docker port clever_swanson 8080
+docker run --rm -ti --entrypoint sh express
